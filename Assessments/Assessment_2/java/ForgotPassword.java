@@ -31,8 +31,8 @@ public class ForgotPassword extends HttpServlet {
 		if(email!=null || !email.equals("")) 
 		{
 			
-			Random rand = new Random();
-			otpvalue = rand.nextInt(1255650);
+			 Random rand = new Random();
+	         otpvalue = rand.nextInt(9000) + 1000;
 
 			String to = email;
 			
@@ -41,8 +41,9 @@ public class ForgotPassword extends HttpServlet {
 			props.put("mail.smtp.socketFactory.port", "465");
 			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 			props.put("mail.smtp.auth", "true");
-			props.put("mail.smtp.port", "465");
-			Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+			props.put("mail.smtp.port", "587");
+			Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() 
+			{
 				protected PasswordAuthentication getPasswordAuthentication() {
 					return new PasswordAuthentication("avanishihora50@gmail.com", "rxhh sofk gfpx ytxl");
 																									

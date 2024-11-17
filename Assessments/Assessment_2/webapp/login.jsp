@@ -93,14 +93,15 @@
                 
                 if (m2 != null) {
                     session.setAttribute("project", true);
-                    session.setAttribute("fname", m2.getFname());
+                    session.setAttribute("name", m2.getFname());
                     session.setAttribute("lname", m2.getLname());
                     session.setAttribute("email", m2.getEmail());
                     session.setAttribute("mobile", m2.getMobile());
                     session.setAttribute("address", m2.getAddress());
                     session.setAttribute("gender", m2.getGender());
                     response.sendRedirect("dashboard.jsp");
-                    return; // Ensure no further processing occurs
+                    
+                    return; 
                 } else {
                     errorMessage = "Login failed. Please check your credentials and try again.";
                 }
@@ -126,6 +127,9 @@
         %>
         <div class="forgotpassword">
             <a href="forgotpassword.jsp">Forgot Password?</a>
+        </div>
+        <div>
+            <a href="changepassword.jsp">Change Password</a>
         </div>
         <div class="footer">
             <p>Don't have an account? <a href="signup.jsp">Sign Up</a></p>

@@ -30,6 +30,20 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
+       <%
+             if (session.getAttribute("project") != null) {
+        %> 	 
+             
+         <li class="nav-item">
+                <a class="nav-link" href="logout.jsp">Logout</a>
+            </li>
+            
+            
+         
+       <%
+             } 
+             else {
+         %>
             <li class="nav-item">
                 <a class="nav-link" href="home.jsp">Home</a>
             </li>
@@ -39,6 +53,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="login.jsp">Login</a>
             </li>
+           <%
+                }
+            %>
         </ul>
     </div>
 </nav>

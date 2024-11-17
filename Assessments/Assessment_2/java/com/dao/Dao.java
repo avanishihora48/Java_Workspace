@@ -8,6 +8,8 @@ import java.sql.SQLException;
 
 import com.model.Model;
 
+import com.dao.Dao;
+
 public class Dao 
 {
 	public static Connection getconnect()
@@ -116,4 +118,29 @@ public class Dao
 	        
 	        return exists;
 	    }
+	 
+	
+ 	
+	 public static int updatedata(Model m) 
+	 {
+	        int status = 0;
+	        Connection con = Dao.getconnect();
+	        try 
+	        {
+	            PreparedStatement ps = con.prepareStatement("update user set password=? where email=?");
+	            ps.setString(1, m.getPassword()); 
+	            ps.setString(2, m.getEmail()); 
+	            
+	            status = ps.executeUpdate();
+	        } 
+	        catch (SQLException e) 
+	        {
+	            e.printStackTrace();
+	        }
+	        return status;
+	    }
+ 	
+ 
+ 
+	
 }

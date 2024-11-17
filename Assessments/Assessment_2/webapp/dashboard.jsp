@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="com.model.Model" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +18,8 @@
     </style>
 </head>
 <body>
+
+<jsp:include page="header.jsp"/>
 
 <h1 align="center">Welcome</h1>
 
