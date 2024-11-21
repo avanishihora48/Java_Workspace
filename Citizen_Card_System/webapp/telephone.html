@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telephone Bill Payment Module</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-top: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .bill-summary {
+      margin-top: 20px;
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+    .bill-summary h3 {
+      margin-top: 0;
+      color: #555;
+    }
+    .bill-summary p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Telephone Bill Payment Module</h2>
+    <form>
+      <div class="form-group">
+        <label for="citizen-id">Citizen ID:</label>
+        <input type="text" id="citizen-id" name="citizen-id" placeholder="Enter Citizen ID">
+      </div>
+
+      <div class="form-group">
+        <label for="call-type">Select Call Type:</label>
+        <select id="call-type" name="call-type">
+          <option value="std">STD Calls</option>
+          <option value="isd">ISD Calls</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="call-duration">Enter Call Duration (in minutes):</label>
+        <input type="number" id="call-duration" name="call-duration" placeholder="Enter Duration">
+      </div>
+
+      <div class="form-group">
+        <label for="call-rate">Enter Rate Per Minute:</label>
+        <input type="number" id="call-rate" name="call-rate" placeholder="Enter Rate Per Minute">
+      </div>
+
+      <button type="submit">Calculate Bill</button>
+    </form>
+
+    <div class="bill-summary">
+      <h3>Bill Summary</h3>
+      <p><strong>Citizen ID:</strong> [Citizen ID]</p>
+      <p><strong>Call Type:</strong> [STD/ISD]</p>
+      <p><strong>Call Duration:</strong> [Duration] minutes</p>
+      <p><strong>Rate Per Minute:</strong> [Rate]</p>
+      <p><strong>Total Bill:</strong> [Total Bill]</p>
+    </div>
+  </div>
+</body>
+</html>

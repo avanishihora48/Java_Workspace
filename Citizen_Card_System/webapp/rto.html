@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RTO Module</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 700px;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .vehicle-details {
+      margin-top: 20px;
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+    .vehicle-details h3 {
+      margin-top: 0;
+      color: #555;
+    }
+    .vehicle-details p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>RTO Module</h2>
+    <form>
+      <div class="form-group">
+        <label for="reg-number">Vehicle Registration Number:</label>
+        <input type="text" id="reg-number" name="reg-number" placeholder="Enter Vehicle Registration Number">
+      </div>
+      <div class="form-group">
+        <label for="engine-number">Engine Number:</label>
+        <input type="text" id="engine-number" name="engine-number" placeholder="Enter Engine Number">
+      </div>
+      <button type="submit">Get Vehicle Details</button>
+    </form>
+
+    <div class="vehicle-details">
+      <h3>Vehicle Details</h3>
+      <p><strong>Vehicle Name:</strong> [Display Vehicle Name]</p>
+      <p><strong>Registration Number:</strong> [Display Registration Number]</p>
+      <p><strong>Engine Number:</strong> [Display Engine Number]</p>
+      <p><strong>Service Number:</strong> [Display Service Number]</p>
+      <p><strong>Owner Address:</strong> [Display Owner Address]</p>
+    </div>
+  </div>
+</body>
+</html>

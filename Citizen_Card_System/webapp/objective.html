@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrator Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 90%;
+      margin: auto;
+      max-width: 1200px;
+    }
+    header {
+      background-color: #333;
+      color: white;
+      padding: 15px 0;
+      text-align: center;
+      font-size: 24px;
+    }
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .dashboard-item {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .dashboard-item:hover {
+      background-color: #007bff;
+      color: white;
+      transform: translateY(-5px);
+    }
+    .dashboard-item i {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-top: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    Administrator Dashboard
+  </header>
+
+  <div class="container">
+    <div class="form-group">
+      <label for="citizen-id">Enter Citizen ID:</label>
+      <input type="text" id="citizen-id" name="citizen-id" placeholder="Enter Citizen ID">
+    </div>
+
+    <div class="dashboard">
+      <div class="dashboard-item" onclick="window.location.href='voting.html';">
+        <i class="fas fa-vote-yea"></i>
+        <h3>Voting</h3>
+        <p>Access voting details and operations.</p>
+      </div>
+
+      <div class="dashboard-item" onclick="window.location.href='passport.html';">
+        <i class="fas fa-passport"></i>
+        <h3>Passport</h3>
+        <p>View and manage passport information.</p>
+      </div>
+
+      <div class="dashboard-item" onclick="window.location.href='gas.html';">
+        <i class="fas fa-gas-pump"></i>
+        <h3>Gas</h3>
+        <p>View and manage gas delivery details.</p>
+      </div>
+
+      <div class="dashboard-item" onclick="window.location.href='banking.html';">
+        <i class="fas fa-university"></i>
+        <h3>Banking</h3>
+        <p>View and perform banking transactions.</p>
+      </div>
+
+      <div class="dashboard-item" onclick="window.location.href='personal-information.html';">
+        <i class="fas fa-user"></i>
+        <h3>Personal Information</h3>
+        <p>Access and manage personal information.</p>
+      </div>
+
+      <div class="dashboard-item" onclick="window.location.href='credit-rating.html';">
+        <i class="fas fa-credit-card"></i>
+        <h3>Credit Rating</h3>
+        <p>View and manage credit ratings.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FontAwesome icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insurance Module</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f9fc;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 700px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .insurance-details {
+      background-color: #f1f1f1;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Insurance Module</h2>
+    <form id="insurance-form">
+      <div class="form-group">
+        <label for="citizen-id">Citizen ID:</label>
+        <input type="text" id="citizen-id" name="citizen-id" placeholder="Enter your Citizen ID" required>
+      </div>
+      <div class="form-group">
+        <label for="insured-amount">Insured Amount:</label>
+        <input type="number" id="insured-amount" name="insured-amount" placeholder="Enter insured amount" required>
+      </div>
+      <div class="form-group">
+        <label for="installments">Installments:</label>
+        <select id="installments" name="installments" required>
+          <option value="Monthly">Monthly</option>
+          <option value="Quarterly">Quarterly</option>
+          <option value="Yearly">Yearly</option>
+        </select>
+      </div>
+      <button type="submit">Submit Policy</button>
+    </form>
+
+    <div class="insurance-details" id="insurance-details">
+      <!-- Insurance details will appear here -->
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('insurance-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent page reload
+      
+      const citizenId = document.getElementById('citizen-id').value;
+      const insuredAmount = document.getElementById('insured-amount').value;
+      const installments = document.getElementById('installments').value;
+      
+      const details = `
+        <h3>Insurance Details</h3>
+        <p><strong>Citizen ID:</strong> ${citizenId}</p>
+        <p><strong>Insured Amount:</strong> $${insuredAmount}</p>
+        <p><strong>Installment Plan:</strong> ${installments}</p>
+      `;
+      
+      document.getElementById('insurance-details').innerHTML = details;
+    });
+  </script>
+</body>
+</html>
