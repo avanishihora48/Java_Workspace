@@ -1,4 +1,5 @@
 package com.controller;
+
 import com.dao.Dao;
 import com.model.TransactionModel;
 import jakarta.servlet.ServletException;
@@ -12,19 +13,23 @@ import java.io.IOException;
 @WebServlet("/BankTransactionServlet")
 public class BankTransactionServlet extends HttpServlet 
 {
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String citizenId = req.getParameter("citizenId");
         String bank = req.getParameter("bank");
         String transactionType = req.getParameter("transactionType");
-       
-        
-        if (transactionType != null) 
+        String errorMessage = null;
+
+        if (transactionType == null || transactionType.trim().isEmpty()) 
+        {
+            errorMessage = "Transaction type is required.";
+        }
+
+        if (errorMessage == null) 
         {
             transactionType = transactionType.substring(0, 1).toUpperCase() + transactionType.substring(1).toLowerCase();
         }
-        
+
         double amount = 0.0;
         try 
         {
@@ -32,21 +37,17 @@ public class BankTransactionServlet extends HttpServlet
         } 
         catch (NumberFormatException e) 
         {
-            req.setAttribute("error", "Invalid amount format.");
-            req.getRequestDispatcher("banking.jsp").forward(req, resp);
-            return;
+            errorMessage = "Invalid amount format.";
         }
 
-        if (amount <= 0) 
+        if (errorMessage == null && amount <= 0) 
         {
-            req.setAttribute("error", "Amount should be greater than zero.");
-            req.getRequestDispatcher("banking.jsp").forward(req, resp);
-            return;
+            errorMessage = "Amount should be greater than zero.";
         }
 
-        if (!transactionType.equals("Deposit") && !transactionType.equals("Withdrawal")) 
+        if (errorMessage != null) 
         {
-            req.setAttribute("error", "Invalid transaction type.");
+            req.setAttribute("errorMessage", errorMessage);
             req.getRequestDispatcher("banking.jsp").forward(req, resp);
             return;
         }
@@ -58,40 +59,40 @@ public class BankTransactionServlet extends HttpServlet
         transaction.setAmount(amount);
 
         boolean isSuccess = false;
-
-        switch (transactionType) 
+        switch (transactionType.toLowerCase()) 
         {
-            case "Deposit":
-            	System.out.println("Transaction in Servlet: " + transaction);
-            	isSuccess = Dao.saveDeposit(transaction);
-                 break;
-
-            case "Withdrawal":
+            case "deposit":
+                isSuccess = Dao.saveDeposit(transaction);
+                break;
+                
+            case "withdrawal":
                 isSuccess = Dao.saveWithdraw(transaction);
                 break;
-
-      
+                
+            case "transfer":
+                String recipientCitizenId = req.getParameter("recipientCitizenId");
+                String recipientBank = req.getParameter("recipientBank");
+                isSuccess = Dao.saveTransfer(transaction, recipientCitizenId, recipientBank);
+                break;
+                
             default:
-                req.setAttribute("error", "Invalid transaction type.");
-                req.getRequestDispatcher("banking.jsp").forward(req, resp);
-                return;
+                errorMessage = "Invalid transaction type.";
+                break;
         }
 
-        if (isSuccess) 
+        if (isSuccess)
         {
-            req.setAttribute("success", transactionType + " Successful!");
-        } 
+            req.setAttribute("successMessage", transactionType + " completed successfully!");
+            req.setAttribute("transactionType", transactionType);
+            req.setAttribute("citizenId", citizenId);
+            req.setAttribute("bank", bank);
+            req.setAttribute("amount", amount);
+        }
         else 
         {
-            req.setAttribute("error", transactionType + " Failed! Insufficient funds.");
+            req.setAttribute("errorMessage", "Transaction failed. Please try again.");
         }
 
-        req.setAttribute("citizenId", citizenId);
-        req.setAttribute("bank", bank);
-        req.setAttribute("transactionType", transactionType);
-        req.setAttribute("amount", amount);
         req.getRequestDispatcher("banking.jsp").forward(req, resp);
     }
 }
-
-
