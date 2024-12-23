@@ -291,11 +291,7 @@
       <a href="aboutus.html">About Us</a>
       <a href="signup.jsp">Sign Up</a>
       <a href="signin.jsp">Sign In</a>
-      <a href="contactus.html">Contact Us</a>
-      <a href="ratings.html">Rate Us</a>
-      <a href="profile.jsp" class="nav-link" aria-label="Profile" >
-    <i class="bi bi-person fs-3"></i>
-  </a>
+      
     </nav>
   </header>
 

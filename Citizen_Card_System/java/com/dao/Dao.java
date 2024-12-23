@@ -32,19 +32,31 @@ public class Dao
         return con;
     }
 
-    public static int signupdata(Model m)
-    {
+    public static int signupdata(Model m) {
         int status = 0;
 
         Connection con = Dao.getconnect();
 
         String citizenId = generateCitizenId();
-        m.setCitizenId(citizenId); 
+        m.setCitizenId(citizenId);
 
- 
-        try 
-        {
-            PreparedStatement ps = con.prepareStatement("INSERT INTO registration(citizenId, fname, lname, gender, email, phone, city, password, repassword) VALUES(?,?,?,?,?,?,?,?,?)");
+        String gasNumber = generateGasNumber();
+        m.setGasNumber(gasNumber);
+        
+        String vehicleRegistrationNo = generateVRNo();
+        m.setVehicleRegistrationNo(vehicleRegistrationNo);
+        
+        String engineNumber = generateEngineNo();
+        m.setEngineNumber(engineNumber);
+        
+        String electricityNumber = generateENo();
+        m.setElectricityNumber(electricityNumber);
+        
+        String passportNumber = generatePassNo();
+        m.setPassportNumber(passportNumber);
+        
+        try {
+        	PreparedStatement ps = con.prepareStatement("INSERT INTO registration(citizenId, fname, lname, gender, email, phone, city, password, gasNumber, vehicleRegistrationNo, engineNumber, electricityNumber, passportNumber) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
             ps.setString(1, m.getCitizenId());
             ps.setString(2, m.getFname());
@@ -54,7 +66,11 @@ public class Dao
             ps.setString(6, m.getPhone());
             ps.setString(7, m.getCity());
             ps.setString(8, m.getPassword());
-            ps.setString(9, m.getRepassword());
+            ps.setString(9, m.getGasNumber()); 
+            ps.setString(10, m.getVehicleRegistrationNo());
+            ps.setString(11, m.getEngineNumber());
+            ps.setString(12, m.getElectricityNumber());
+            ps.setString(13, m.getPassportNumber());
 
             status = ps.executeUpdate();
         } 
@@ -66,45 +82,32 @@ public class Dao
         return status;
     }
 
- 
-	public static Model signindata(Model m) 
-    {
+	public static Model signindata(Model m) {
         Connection con = Dao.getconnect();
         Model m2 = null;
 
-        try 
-        {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM registration WHERE email=? AND password=?");
-
+        try (PreparedStatement ps = con.prepareStatement("SELECT * FROM registration WHERE email=? AND password=?")) {
             ps.setString(1, m.getEmail());
-            ps.setString(2, m.getPassword());
+            ps.setString(2, m.getPassword()); 
 
-            ResultSet set = ps.executeQuery();
-
-            if (set.next()) 
-            {
-                int id = set.getInt("id");
-                String citizenId = set.getString("citizenId");
-                String fname = set.getString("fname");
-                String lname = set.getString("lname");
-                String gender = set.getString("gender");
-                String email = set.getString("email");
-                String phone = set.getString("phone");
-                String city = set.getString("city");
-                String password = set.getString("password");
-                String repassword = set.getString("repassword");
-
-                m2 = new Model();
-                m2.setId(id);
-                m2.setCitizenId(citizenId);
-                m2.setFname(fname);
-                m2.setLname(lname);
-                m2.setGender(gender);
-                m2.setEmail(email);
-                m2.setPhone(phone);
-                m2.setCity(city);
-                m2.setPassword(password);
-                m2.setRepassword(repassword);
+            try (ResultSet set = ps.executeQuery()) {
+                if (set.next()) {
+                    m2 = new Model();
+                    m2.setId(set.getInt("id"));
+                    m2.setCitizenId(set.getString("citizenId"));
+                    m2.setFname(set.getString("fname"));
+                    m2.setLname(set.getString("lname"));
+                    m2.setGender(set.getString("gender"));
+                    m2.setEmail(set.getString("email"));
+                    m2.setPhone(set.getString("phone"));
+                    m2.setCity(set.getString("city"));
+                    m2.setPassword(set.getString("password"));
+                    m2.setGasNumber(set.getString("gasNumber"));
+                    m2.setVehicleRegistrationNo(set.getString("vehicleRegistrationNo"));
+                    m2.setEngineNumber(set.getString("engineNumber"));
+                    m2.setElectricityNumber(set.getString("electricityNumber"));
+                    m2.setPassportNumber(set.getString("passportNumber"));
+                }
             }
         } 
         catch (SQLException e) 
@@ -112,14 +115,39 @@ public class Dao
             e.printStackTrace();
         }
 
-        return m2; 
+        return m2;
     }
 
     public static String generateCitizenId() 
     {
-        return "CIT" + UUID.randomUUID().toString().substring(0, 8);  
+        return "CIT" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();  
     }
 
+    private static String generatePassNo() {
+		// TODO Auto-generated method stub
+		return "PASS" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+	}
+
+	private static String generateENo() {
+		// TODO Auto-generated method stub
+		return "ELEC" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+	}
+
+	private static String generateEngineNo() {
+		// TODO Auto-generated method stub
+		return "ENG" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+	}
+
+	private static String generateVRNo() {
+		// TODO Auto-generated method stub
+		return "VREG" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+	}
+
+	private static String generateGasNumber() {
+		// TODO Auto-generated method stub
+		return "GAS" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+	}
+	
     public static void saveCitizenId(int userId, String citizenId) 
     {
         Connection con = Dao.getconnect();
