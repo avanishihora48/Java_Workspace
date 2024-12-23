@@ -320,90 +320,68 @@
  <section id="logos" style="text-align: center; margin: 20px 0;">
   <div class="logo-container">
     <!-- RTO Card -->
-    <div class="logo-card">
-      <a href="insurance.jsp">
-        <img src="image/insurance3.png" alt="RTO Logo" class="logo-img">
-        <p class="logo-title">INSURANCE</p>
-      </a>
+    <div class="logo-card" onclick="window.location='insurance.jsp';" style="cursor: pointer;">
+      <img src="image/insurance3.png" alt="RTO Logo" class="logo-img">
+      <p class="logo-title">INSURANCE</p>
     </div>
 
     <!-- Voting Card -->
-    <div class="logo-card">
-      <a href="taxation.html">
-        <img src="image/tax.jpg" alt="Voting Logo" class="logo-img">
-        <p class="logo-title">TAXATION</p>
-      </a>
+    <div class="logo-card" onclick="window.location='taxation.jsp';" style="cursor: pointer;">
+      <img src="image/tax.jpg" alt="Voting Logo" class="logo-img">
+      <p class="logo-title">TAXATION</p>
     </div>
 
     <!-- Banking Card -->
-    <div class="logo-card">
-      <a href="gas.html">
-        <img src="image/gas.png" alt="Banking Logo" class="logo-img">
-        <p class="logo-title">GAS</p>
-      </a>
+    <div class="logo-card" onclick="window.location='gas.jsp';" style="cursor: pointer;">
+      <img src="image/gas.png" alt="Banking Logo" class="logo-img">
+      <p class="logo-title">GAS</p>
     </div>
   </div>
 </section>
 
-  <section id="logos" style="text-align: center; margin: 20px 0;">
+<section id="logos" style="text-align: center; margin: 20px 0;">
   <div class="logo-container">
     <!-- RTO Card -->
-    <div class="logo-card">
-      <a href="rto.html">
-        <img src="image/rto.png" alt="RTO Logo" class="logo-img">
-        <p class="logo-title">RTO</p>
-      </a>
+    <div class="logo-card" onclick="window.location='rto.html';" style="cursor: pointer;">
+      <img src="image/rto.png" alt="RTO Logo" class="logo-img">
+      <p class="logo-title">RTO</p>
     </div>
 
     <!-- Voting Card -->
-    <div class="logo-card">
-      <a href="voting.html">
-        <img src="image/voting.png" alt="Voting Logo" class="logo-img">
-        <p class="logo-title">VOTING</p>
-      </a>
+    <div class="logo-card" onclick="window.location='voting.html';" style="cursor: pointer;">
+      <img src="image/voting.png" alt="Voting Logo" class="logo-img">
+      <p class="logo-title">VOTING</p>
     </div>
 
     <!-- Banking Card -->
-    <div class="logo-card">
-      <a href="banking.jsp">
-        <img src="image/banking.jpg" alt="Banking Logo" class="logo-img">
-        <p class="logo-title">BANKING</p>
-      </a>
+    <div class="logo-card" onclick="window.location='banking.jsp';" style="cursor: pointer;">
+      <img src="image/banking.jpg" alt="Banking Logo" class="logo-img">
+      <p class="logo-title">BANKING</p>
     </div>
   </div>
 </section>
 
-
- <section id="logos" style="text-align: center; margin: 20px 0;">
+<section id="logos" style="text-align: center; margin: 20px 0;">
   <div class="logo-container">
-    <!-- RTO Card -->
-    <div class="logo-card">
-      <a href="telephone.html">
-        <img src="image/telephone.jpg" alt="RTO Logo" class="logo-img">
-        <p class="logo-title">TELEPHONE</p>
-      </a>
+    <!-- Telephone Card -->
+    <div class="logo-card" onclick="window.location='telephone.html';" style="cursor: pointer;">
+      <img src="image/telephone.jpg" alt="RTO Logo" class="logo-img">
+      <p class="logo-title">TELEPHONE</p>
     </div>
 
-    <!-- Voting Card -->
-    <div class="logo-card">
-      <a href="electricity.html">
-        <img src="image/electricity.png" alt="Voting Logo" class="logo-img">
-        <p class="logo-title">ELECTRICITY</p>
-      </a>
+    <!-- Electricity Card -->
+    <div class="logo-card" onclick="window.location='electricity.html';" style="cursor: pointer;">
+      <img src="image/electricity.png" alt="Voting Logo" class="logo-img">
+      <p class="logo-title">ELECTRICITY</p>
     </div>
 
-    <!-- Banking Card -->
-    <div class="logo-card">
-      <a href="passport.html">
-        <img src="image/passport.jpg" alt="Banking Logo" class="logo-img">
-        <p class="logo-title">PASSPORT</p>
-      </a>
+    <!-- Passport Card -->
+    <div class="logo-card" onclick="window.location='passport.html';" style="cursor: pointer;">
+      <img src="image/passport.jpg" alt="Banking Logo" class="logo-img">
+      <p class="logo-title">PASSPORT</p>
     </div>
   </div>
 </section>
-
-  
-  
 <jsp:include page="footer.jsp"/>
 </body>
 </html>

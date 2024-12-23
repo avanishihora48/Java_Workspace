@@ -164,19 +164,29 @@
       <button type="submit" name="transactionType" value="transfer">Transfer</button>
     </form>
   
-    <% if (request.getAttribute("successMessage") != null) { %>
+    <% if (request.getAttribute("successMessage") != null) 
+    { 
+    %>
       <div class="message success">
         <%= request.getAttribute("successMessage") %>
       </div>
-    <% } %>
+    <% 
+    } 
+    %>
     
-    <% if (request.getAttribute("errorMessage") != null) { %>
+    <% if (request.getAttribute("errorMessage") != null) 
+    { 
+    %>
       <div class="message error">
         <%= request.getAttribute("errorMessage") %>
       </div>
-    <% } %>
+    <% 
+    } 
+    %>
     
-    <% if (request.getAttribute("transactionType") != null) { %>
+    <% if (request.getAttribute("transactionType") != null) 
+    { 
+    %>
       <div class="transaction-summary">
         <h3>Transaction Details</h3>
         <p><strong>Transaction Type:</strong> <%= request.getAttribute("transactionType") %></p>
@@ -184,7 +194,9 @@
         <p><strong>Bank:</strong> <%= request.getAttribute("bank") %></p>
         <p><strong>Amount:</strong> <%= request.getAttribute("amount") %></p>
       </div>
-    <% } %>
+    <% 
+    } 
+    %>
   </div>
 </body>
 </html>

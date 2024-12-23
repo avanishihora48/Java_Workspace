@@ -65,6 +65,7 @@ public class Model
 	public void setRepassword(String repassword) {
 		this.repassword = repassword;
 	}
-	   
+	
+	
 	   
 }

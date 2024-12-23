@@ -6,8 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
+
+import com.model.GasModel;
 import com.model.InsuranceModel;
 import com.model.Model;
+import com.model.TaxModel;
 import com.model.TransactionModel;
 import java.sql.Timestamp;
 
@@ -38,6 +41,7 @@ public class Dao
         String citizenId = generateCitizenId();
         m.setCitizenId(citizenId); 
 
+ 
         try 
         {
             PreparedStatement ps = con.prepareStatement("INSERT INTO registration(citizenId, fname, lname, gender, email, phone, city, password, repassword) VALUES(?,?,?,?,?,?,?,?,?)");
@@ -62,7 +66,8 @@ public class Dao
         return status;
     }
 
-    public static Model signindata(Model m) 
+ 
+	public static Model signindata(Model m) 
     {
         Connection con = Dao.getconnect();
         Model m2 = null;
@@ -290,7 +295,7 @@ public class Dao
 	    return status;
 	}
 
-	private static double getUserBalance(String citizenId, String bank) 
+	public static double getUserBalance(String citizenId, String bank) 
 	{
 	    double balance = -1;
 	    Connection con = Dao.getconnect();
@@ -392,8 +397,6 @@ public class Dao
 
 	public static boolean saveTransfer(TransactionModel transaction, String destinationAccount, String destinationBank) 
 	{
-	    
-		  
 		Connection con = Dao.getconnect();
 	    PreparedStatement psDebit = null;
 	    PreparedStatement psCredit = null;
@@ -423,7 +426,7 @@ public class Dao
 	        int rowsDebited = psDebit.executeUpdate();
 	        if (rowsDebited == 0) 
 	        {
-	            System.out.println("Insufficient balance or sender account not found: " + transaction.getCitizenId());
+	            
 	            con.rollback();
 	            return false;
 	        }
@@ -471,7 +474,8 @@ public class Dao
 	    } 
 	    finally 
 	    {
-	        try {
+	        try 
+	        {
 	            if (psDebit != null) psDebit.close();
 	            if (psCredit != null) psCredit.close();
 	            if (psCheckRecipient != null) psCheckRecipient.close();
@@ -482,6 +486,117 @@ public class Dao
 	    }
 	    return false;
 	}
+
+	public static boolean insertTaxPayment(TaxModel tx) {
+	    boolean status = false;
+	   
+	    Connection con = Dao.getconnect();
+	    
+	    try {
+	        PreparedStatement ps = con.prepareStatement("INSERT INTO tax_table (citizenId, taxPaid, taxDue) VALUES (?, ?, ?)");
+	    
+	        ps.setString(1, tx.getCitizenId());
+	        ps.setDouble(2, tx.getTaxPaid());
+	        ps.setDouble(3, tx.getTaxDue());
+	   
+	        int rowsAffected = ps.executeUpdate();
+	        if (rowsAffected > 0) {
+	            status = true; 
+	        }
+	    } 
+	    catch (SQLException e) 
+	    {
+	        e.printStackTrace();
+	    } 
+	    finally 
+	    {
+	       
+	        try {
+	            if (con != null) {
+	                con.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    
+	    return status;
+	}
+
+	public static boolean updateUserAccountBalance(TaxModel tx) {
+		Connection con = Dao.getconnect();
+	    String updateQuery = "UPDATE user_accounts SET balance = balance - ? WHERE citizenId = ? AND bank = ? AND balance >= ?";
+	    try ( 
+	         PreparedStatement stmt = con.prepareStatement(updateQuery))
+	    {
+	        stmt.setDouble(1, tx.getTaxPaid());
+	        stmt.setString(2, tx.getCitizenId());
+	        stmt.setString(3, tx.getBank());
+	        stmt.setDouble(4, tx.getTaxPaid()); 
+
+	        int rowsUpdated = stmt.executeUpdate();
+	        return rowsUpdated > 0; 
+	    } 
+	    catch (SQLException e) 
+	    {
+	        e.printStackTrace();
+	    }
+	    return false;
+	}
+
+	public static boolean insertGasPayment(GasModel gs) {
+	    boolean status = false;
+	    Connection con = Dao.getconnect();
+	   
+	    try {
+	        PreparedStatement ps = con.prepareStatement("INSERT INTO gas_service (citizenId, gasNumber, gasType, gasAmount) VALUES (?, ?, ?, ?)");
+	        ps.setString(1, gs.getCitizenId());
+	        ps.setString(2, gs.getGasNumber());
+	        ps.setString(3, gs.getGasType());
+	        ps.setDouble(4, gs.getGasAmount());
+
+	        int rowsAffected = ps.executeUpdate();
+	        if (rowsAffected > 0) {
+	            status = true;
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } 
+	    return status;
+	}
+
+	    
+	public static boolean updateGasUserAccountBalance(GasModel gs) {
+	    boolean status = false;
+	    Connection con = Dao.getconnect();
+	    PreparedStatement stmt = null;
+
+	    try {
+	        String query = "UPDATE user_accounts SET balance = balance - ? WHERE citizenId = ? AND bank = ? AND balance >= ?";
+	        stmt = con.prepareStatement(query);
+	        stmt.setDouble(1, gs.getGasAmount());  
+	        stmt.setString(2, gs.getCitizenId()); 
+	        stmt.setString(3, gs.getBank());      
+	        stmt.setDouble(4, gs.getGasAmount()); 
+
+	        int rowsUpdated = stmt.executeUpdate();
+	        if (rowsUpdated > 0) {
+	            status = true;
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (stmt != null) stmt.close();
+	            if (con != null) con.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return status;
+	}
+
+	
 
 
 }

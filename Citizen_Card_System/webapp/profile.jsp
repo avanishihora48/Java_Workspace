@@ -87,7 +87,7 @@
       <p>Gender: <%= session.getAttribute("gender") %></p>
       <p>City: <%= session.getAttribute("city") %></p>
       <p>Citizen ID: <%= session.getAttribute("citizenId") %></p>
-      
+      <p>Gas Number: <%=session.getAttribute("gasNumber") %></p>
       <button class="btn btn-primary">Edit Profile</button>
 
       <div class="social-links">
