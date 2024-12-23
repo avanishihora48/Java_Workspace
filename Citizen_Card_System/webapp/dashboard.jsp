@@ -342,13 +342,13 @@
 <section id="logos" style="text-align: center; margin: 20px 0;">
   <div class="logo-container">
     <!-- RTO Card -->
-    <div class="logo-card" onclick="window.location='rto.html';" style="cursor: pointer;">
+    <div class="logo-card" onclick="window.location='rto.jsp';" style="cursor: pointer;">
       <img src="image/rto.png" alt="RTO Logo" class="logo-img">
       <p class="logo-title">RTO</p>
     </div>
 
     <!-- Voting Card -->
-    <div class="logo-card" onclick="window.location='voting.html';" style="cursor: pointer;">
+    <div class="logo-card" onclick="window.location='voting.jsp';" style="cursor: pointer;">
       <img src="image/voting.png" alt="Voting Logo" class="logo-img">
       <p class="logo-title">VOTING</p>
     </div>

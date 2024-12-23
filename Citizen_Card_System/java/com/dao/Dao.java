@@ -10,8 +10,11 @@ import java.util.UUID;
 import com.model.GasModel;
 import com.model.InsuranceModel;
 import com.model.Model;
+import com.model.RtoModel;
 import com.model.TaxModel;
 import com.model.TransactionModel;
+import com.model.VoteModel;
+
 import java.sql.Timestamp;
 
 
@@ -622,6 +625,112 @@ public class Dao
 	        }
 	    }
 	    return status;
+	}
+
+	public static boolean insertRtoPayment(RtoModel rto) {
+		// TODO Auto-generated method stub
+		 boolean status = false;
+		 Connection con = Dao.getconnect();
+		 
+		 try 
+		 {
+			PreparedStatement ps = con.prepareStatement("INSERT into rto_service(citizenId, vehicleRegistrationNo,	engineNumber, transactionDate, payAmount) VALUES (?, ? ,?, ?, ?)");
+			 ps.setString(1, rto.getCitizenId());
+             ps.setString(2, rto.getVehicleRegistrationNo());
+             ps.setString(3, rto.getEngineNumber());
+             ps.setTimestamp(4, rto.getTransactionDate());
+             ps.setDouble(5, rto.getPayAmount());
+            
+             int rowsAffected = ps.executeUpdate();
+ 	        if (rowsAffected > 0) 
+ 	        {
+ 	            status = true;
+ 	        }
+ 	    } 
+		 catch (SQLException e) 
+		 {
+ 	        e.printStackTrace();
+ 	    } 
+ 	    return status;
+      } 
+		
+	public static boolean updateRtoUserAccountBalance(RtoModel rto) {
+		 boolean status = false;
+		    Connection con = Dao.getconnect();
+		    PreparedStatement ps = null;
+
+		    try {
+		        String query = "UPDATE user_accounts SET balance = balance - ? WHERE citizenId = ? AND bank = ? AND balance >= ?";
+		        ps = con.prepareStatement(query);
+		        ps.setDouble(1, rto.getPayAmount()); 
+		        ps.setString(2, rto.getCitizenId()); 
+		        ps.setString(3, rto.getBank()); 
+		        ps.setDouble(4, rto.getPayAmount()); 
+		        int rowsUpdated = ps.executeUpdate();
+		        if (rowsUpdated > 0) {
+		            status = true;
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    } finally {
+		        try {
+		            if (ps != null) ps.close();
+		            if (con != null) con.close();
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		        }
+		    }
+		    return status;
+	}
+
+	public static boolean saveVote(VoteModel vm) {
+		// TODO Auto-generated method stub
+		boolean status = false;
+		Connection con = Dao.getconnect();
+		
+		try 
+		{
+			PreparedStatement ps = con.prepareStatement("INSERT into votes  (citizenId, area, candidate, votingDate) VALUES (?, ?, ?, ?)");
+			ps.setString(1, vm.getCitizenId());
+            ps.setString(2, vm.getArea());
+            ps.setString(3, vm.getCandidate());
+            ps.setTimestamp(4, vm.getVotingDate());
+		
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) 
+            {
+                status = true;
+            }
+		} 
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return status;
+		
+	}
+
+	public static boolean hasVoted(String citizenId) {
+		// TODO Auto-generated method stub
+		boolean status = false;
+		Connection con = Dao.getconnect();
+		
+		try 
+		{
+			PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) FROM votes WHERE citizenId = ?");
+			ps.setString(1, citizenId);
+			 ResultSet rs = ps.executeQuery();
+	            if (rs.next()) {
+	                return rs.getInt(1) > 0;  
+	            }
+		} 
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return status;
 	}
 
 	

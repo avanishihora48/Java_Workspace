@@ -283,18 +283,8 @@
 </head>
 
 <body>
-  <!-- Header -->
-  <header>
-    <h1><img src="image/satyamev_jayate.png" style="height: 50px; width: 40px;">Citizen Card System</h1>
-    <nav>
-      <a href="home.html">Home</a>
-      <a href="aboutus.html">About Us</a>
-      <a href="signup.jsp">Sign Up</a>
-      <a href="signin.jsp">Sign In</a>
-      
-    </nav>
-  </header>
-
+  <jsp:include page="header.jsp"/>
+  
   <!-- Carousel with Custom Size -->
   <div id="carouselExample" class="carousel slide small-carousel" data-bs-ride="carousel" data-bs-interval="3000">
     <div class="carousel-inner">
@@ -320,9 +310,10 @@
 
   <!--About Citizenship -->
 
-  <div>
-    <h3>About Citizenship</h3>
-  </div>
+ <div>
+    <h3 style="padding: 10px 20px 10px 20px; letter-spacing: 2px">About Citizenship</h3>
+</div>
+
 
   <div id="citizen">
     <p>Indian citizenship can be acquired by birth, descent, registration and naturalization.</p>
@@ -336,7 +327,7 @@
 
   <!-- Orders And Circulars -->
   <div>
-    <h3>Orders And Circulars</h3>
+    <h3 style="padding: 10px 20px 10px 20px; letter-spacing: 2px">Orders And Circulars</h3>
   </div>
   <div id="orders">
     <marquee onmouseover="stop(this.value)" onmouseout="start(this.value)" direction="up" behaviour="scroll"
@@ -393,7 +384,7 @@
 
   <!-- services -->
   <div>
-    <h3>Online Services - Citizenship Amendment Act (CAA)</h3>
+    <h3 style="padding: 10px 20px 10px 20px; letter-spacing: 2px">Online Services - Citizenship Amendment Act (CAA)</h3>
   </div>
 
   <div id="services">
@@ -416,37 +407,7 @@
     </p>
   </div>
   <!-- services end -->
-  <!-- Footer -->
-  <footer>
-    <div class="footer-left">
-      <h5>Address</h5>
-      <p>Phone: 123-456-7890</p>
-      <p>Email: info@organization.com</p>
-      <p>Address: 123 Main St, City, State</p>
-    </div>
-    <div class="footer-center">
-      <h5>Quick Links</h5>
-      <ul>
-        <li><a href="">Home</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">FAQs</a></li>
-        <li><a href="#">Contact Us</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Terms of Service</a></li>
-      </ul>
-    </div>
-    <div class="footer-right">
-      <h5>Follow Us</h5>
-      <div>
-        <i class="fa fa-facebook" aria-label="Facebook"></i>
-        <i class="fa fa-instagram" aria-label="Instagram"></i>
-        <i class="fa fa-twitter" aria-label="Twitter"></i>
-      </div>
-      <p>&copy; 2024 Your Organization. All rights reserved.</p>
-    </div>
-  </footer>
-  <!-- footer end -->
+ <jsp:include page="footer.jsp"/>
   <!-- JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

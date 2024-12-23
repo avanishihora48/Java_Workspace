@@ -1,3 +1,4 @@
+<%@page import="com.model.GasModel"%>
 <%@page import="java.util.UUID"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -107,24 +108,44 @@
         .transaction-summary strong {
             color: #333;
         }
+        
+         .message {
+	      text-align: center;
+	      margin-top: 10px;
+	      font-weight: bold;
+	    }
+	    .message.success {
+	      color: green;
+	    }
+	    .message.error {
+	      color: red;
+	    }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>Gas Module</h2>
         <form action="GasServlet" method="post">
-            <div class="form-group">
-                <label for="citizen-id">Citizen Id:</label>
-                <input type="text" id="citizen-id" name="citizenId" placeholder="Enter Citizen Id Number" required>
-            </div>
+             <div class="form-group">
+      <%
+           String citizenId = (String) session.getAttribute("citizenId");
+       %>
+        <label for="citizen-id">Citizen Id:</label>
+        <input type="text" id="citizen-id" name="citizenId" value="<%= citizenId !=null ? citizenId : "Citizen Id not found" %>">
+      </div>
             <div class="form-group">
                 <label for="bank">Bank Name:</label>
                 <input type="text" id="bank" name="bank" required>
             </div>
-            <div class="form-group">
-                <label for="gas-no">Gas Number:</label>
-                <input type="text" id="gas-no" name="gasNumber" readonly value="${gasNumber}">
-            </div>
+            <%
+                 String gasNumber = (String) session.getAttribute("gasNumber");
+             %>
+             
+		   <div class="form-group">
+		    <label for="gas-no">Gas Number:</label>
+		    <input type="text" id="gas-no" name="gasNumber" readonly 
+		           value="<%= gasNumber != null ? gasNumber : "Gas Number Not Found" %>">
+		    </div>
 
             <div class="form-group">
                 <label for="gas-type">Gas Type:</label>

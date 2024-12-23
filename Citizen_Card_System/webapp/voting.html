@@ -31,7 +31,7 @@
       display: block;
       margin-bottom: 5px;
     }
-    select, input[type="radio"] {
+    select, input[type="radio"], input[type="text"] {
       width: 100%;
       padding: 10px;
       border: 1px solid #ccc;
@@ -44,13 +44,14 @@
     }
     button {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       background-color: #28a745;
       color: #fff;
       border: none;
       border-radius: 5px;
       cursor: pointer;
       font-size: 16px;
+      margin-top: 20px;
     }
     button:hover {
       background-color: #218838;
@@ -69,19 +70,34 @@
     .voting-summary p {
       margin: 5px 0;
     }
+    .form-section {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .form-section .form-group {
+      width: 48%;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h2>Voting Module</h2>
     <form>
-      <div class="form-group">
-        <label for="area">Select Voting Area:</label>
-        <select id="area" name="area">
-          <option value="area-1">Area 1</option>
-          <option value="area-2">Area 2</option>
-          <option value="area-3">Area 3</option>
-        </select>
+      <div class="form-section">
+        <div class="form-group">
+          <label for="citizen-id">Citizen ID:</label>
+          <input type="text" id="citizen-id" name="citizenId" placeholder="Enter Citizen ID" required>
+        </div>
+
+        <div class="form-group">
+          <label for="area">Select Voting Area:</label>
+          <select id="area" name="area">
+            <option value="area-1">Area 1</option>
+            <option value="area-2">Area 2</option>
+            <option value="area-3">Area 3</option>
+          </select>
+        </div>
       </div>
 
       <div class="form-group">
@@ -99,6 +115,7 @@
 
     <div class="voting-summary">
       <h3>Your Voting Summary</h3>
+      <p><strong>Citizen ID:</strong> [Entered Citizen ID]</p>
       <p><strong>Voting Area:</strong> [Selected Area]</p>
       <p><strong>Chosen Candidate:</strong> [Selected Candidate]</p>
     </div>

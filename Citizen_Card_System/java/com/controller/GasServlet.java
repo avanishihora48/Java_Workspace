@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/GasServlet")
 public class GasServlet extends HttpServlet {
@@ -20,7 +21,12 @@ public class GasServlet extends HttpServlet {
         String citizenId = req.getParameter("citizenId");
         String bank = req.getParameter("bank");
         String gasType = req.getParameter("gasType");
+        String gasNumber = req.getParameter("gasNumber");
         String gasAmountStr = req.getParameter("gasAmount");
+
+        HttpSession session = req.getSession();
+        session.setAttribute("gasNumber", gasNumber);
+        session.setAttribute("citizenId", citizenId);
 
         if (citizenId == null || citizenId.trim().isEmpty()) {
             req.setAttribute("errorMessage", "Citizen ID is required.");
@@ -56,25 +62,25 @@ public class GasServlet extends HttpServlet {
             return;
         }
 
-        String gasNumber = UUID.randomUUID().toString();
+    
 
         double currentBalance = Dao.getUserBalance(citizenId, bank);
 
         if (currentBalance >= gasAmount) {
             GasModel gs = new GasModel();
             gs.setCitizenId(citizenId);
-            gs.setGasNumber(gasNumber);
             gs.setBank(bank);
             gs.setGasAmount(gasAmount);
             gs.setGasType(gasType);
+            gs.setGasNumber(gasNumber);
 
             boolean gasInserted = Dao.insertGasPayment(gs);
             boolean balanceUpdated = Dao.updateGasUserAccountBalance(gs);
 
             if (gasInserted && balanceUpdated) {
                 req.setAttribute("citizenId", citizenId);
-                req.setAttribute("gasNumber", gasNumber);
                 req.setAttribute("gasType", gasType);
+                req.setAttribute("gasNumber", gasNumber);
                 req.setAttribute("gasAmount", gasAmount);
                 req.getRequestDispatcher("gas.jsp").forward(req, resp);
             } else {

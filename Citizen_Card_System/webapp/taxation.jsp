@@ -63,16 +63,16 @@
       font-weight: bold;
     }
 
-    .message.success {
-      background-color: #d4edda;
-      color: #155724;
-      border: 1px solid #c3e6cb;
+     .message {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
     }
-
+    .message.success {
+      color: green;
+    }
     .message.error {
-      background-color: #f8d7da;
-      color: #721c24;
-      border: 1px solid #f5c6cb;
+      color: red;
     }
   </style>
 </head>

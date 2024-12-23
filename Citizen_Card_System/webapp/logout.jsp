@@ -10,7 +10,7 @@
 
 <%
 		session.removeAttribute("project");
-		session.invalidate();
+		
 		response.sendRedirect("index.jsp");
 	
 %>
