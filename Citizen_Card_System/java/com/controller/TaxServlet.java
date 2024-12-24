@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/TaxServlet")
 public class TaxServlet extends HttpServlet 
@@ -19,6 +20,9 @@ public class TaxServlet extends HttpServlet
     String bank = req.getParameter("bank");
 
     double payAmount = 0;
+
+    HttpSession session = req.getSession();
+    session.setAttribute("citizenId", citizenId);
 
     try 
     {
@@ -31,6 +35,11 @@ public class TaxServlet extends HttpServlet
         return;
     }
 
+	    if (citizenId == null || citizenId.trim().isEmpty()) {
+	        req.setAttribute("errorMessage", "Citizen ID is required.");
+	        req.getRequestDispatcher("gas.jsp").forward(req, resp);
+	        return;
+	    }
         if (bank == null || bank.isEmpty()) 
         {
             req.setAttribute("errorMessage", "Bank information is required.");

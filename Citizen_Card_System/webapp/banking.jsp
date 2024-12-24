@@ -33,14 +33,14 @@
       margin-bottom: 5px;
     }
     input, select {
-      width: 100%;
+      width: 95%;
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 5px;
       margin-top: 5px;
     }
     button {
-      width: 100%;
+      width: 95%;
       padding: 10px;
       background-color: #007bff;
       color: #fff;

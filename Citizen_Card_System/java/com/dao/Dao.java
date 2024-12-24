@@ -12,6 +12,7 @@ import com.model.InsuranceModel;
 import com.model.Model;
 import com.model.RtoModel;
 import com.model.TaxModel;
+import com.model.TelephoneModel;
 import com.model.TransactionModel;
 import com.model.VoteModel;
 
@@ -733,7 +734,107 @@ public class Dao
 		return status;
 	}
 
+	public static boolean saveCallDetails(TelephoneModel tm) {
+	    boolean status = false;
+	    try (Connection con = Dao.getconnect();
+	         PreparedStatement ps = con.prepareStatement("INSERT INTO tel_service (citizenId, callType, callStartTime, callDuration, callRate, callCharges) VALUES (?, ?, ?, ?, ?, ?)")) {
+
+	        ps.setString(1, tm.getCitizenId());
+	        ps.setString(2, tm.getCallType());
+	        ps.setTimestamp(3, tm.getCallStartTime());
+	        ps.setLong(4, tm.getCallDuration());
+	        ps.setInt(5, tm.getCallRate());
+	        ps.setDouble(6, tm.getCallCharges());
+
+	        int rowsAffected = ps.executeUpdate();
+	        if (rowsAffected > 0) {
+	            status = true;
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return status;
+	}
+
+	public static boolean updateUserCallAccount(String citizenId, double callCharges) {
+	    boolean status = false; 
+	    try (Connection con = Dao.getconnect();
+	         PreparedStatement ps = con.prepareStatement(
+	             "UPDATE user_accounts SET balance = balance - ? WHERE citizenId = ? AND balance >= ?")) {
+
+	        ps.setDouble(1, callCharges);  
+	        ps.setString(2, citizenId);   
+	        ps.setDouble(3, callCharges); 
+
+	        int rowsUpdated = ps.executeUpdate();
+	        if (rowsUpdated > 0) {
+	            status = true; 
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return status;
+	}
+
+	public static boolean insertUserCharges(String citizenId, int previousUnits, int currentUnits, double ratePerUnit,
+			double totalCharges) {
+		// TODO Auto-generated method stub
+		boolean status = false;
+		Connection con = Dao.getconnect();
+		
+		try 
+		{
+			PreparedStatement ps = con.prepareStatement("INSERT into electricity_service(citizenId, previousUnits, currentUnits, ratePerUnit, totalCharges) VALUES(?, ?, ?, ?, ?)");
+			ps.setString(1, citizenId);
+			ps.setInt(2, previousUnits);
+			ps.setInt(3, currentUnits);
+			ps.setDouble(4, ratePerUnit);
+			ps.setDouble(5, totalCharges);
+			
+			int rowsAffected = ps.executeUpdate();
+			
+			 if (rowsAffected > 0) 
+			 {
+	             return true; 
+	         } 
+			 else 
+			 {
+	             return false; 
+	         }
+		} 
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		
+		
+	}
+		
+	public static boolean updateUserCharges(String citizenId, int previousUnits, int currentUnits, double ratePerUnit, double totalCharges) {
+	    boolean status = false; 
+	    Connection con = Dao.getconnect();
+	    
+	    try {
+	        
+	        PreparedStatement ps = con.prepareStatement("UPDATE user_accounts SET balance = balance - ? WHERE citizenId = ? AND balance >= ?");
+	    
+	        ps.setDouble(1, totalCharges);  
+	        ps.setString(2, citizenId);     
+	        ps.setDouble(3, totalCharges);  
 	
+	        int rowsUpdated = ps.executeUpdate();
+	 
+	        if (rowsUpdated > 0) {
+	            status = true; 
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    return status;
+	}
 
 
 }

@@ -32,7 +32,7 @@
     }
 
     input {
-      width: 100%;
+      width: 90%;
       padding: 12px;
       font-size: 14px;
       border: 1px solid #ccc;
@@ -42,7 +42,7 @@
     }
 
     button {
-      width: 100%;
+      width: 95%;
       padding: 12px;
       background-color: #4299e1;
       color: white;
@@ -80,9 +80,12 @@
   <div class="container">
     <h2>Taxation Module</h2>
     <form id="tax-form" action="TaxServlet" method="post">
-      <div class="form-group">
-        <label for="citizen-id">Citizen ID:</label>
-        <input type="text" id="citizen-id" name="citizenId" placeholder="Enter Citizen ID" required>
+       <div class="form-group">
+      <%
+           String citizenId = (String) session.getAttribute("citizenId");
+       %>
+        <label for="citizen-id">Citizen Id:</label>
+        <input type="text" id="citizen-id" name="citizenId" value="<%= citizenId !=null ? citizenId : "Citizen Id not found" %>">
       </div>
       
       <div class="form-group">

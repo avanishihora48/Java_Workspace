@@ -364,13 +364,13 @@
 <section id="logos" style="text-align: center; margin: 20px 0;">
   <div class="logo-container">
     <!-- Telephone Card -->
-    <div class="logo-card" onclick="window.location='telephone.html';" style="cursor: pointer;">
+    <div class="logo-card" onclick="window.location='telephone.jsp';" style="cursor: pointer;">
       <img src="image/telephone.jpg" alt="RTO Logo" class="logo-img">
       <p class="logo-title">TELEPHONE</p>
     </div>
 
     <!-- Electricity Card -->
-    <div class="logo-card" onclick="window.location='electricity.html';" style="cursor: pointer;">
+    <div class="logo-card" onclick="window.location='electricity.jsp';" style="cursor: pointer;">
       <img src="image/electricity.png" alt="Voting Logo" class="logo-img">
       <p class="logo-title">ELECTRICITY</p>
     </div>

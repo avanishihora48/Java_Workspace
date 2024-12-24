@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/InsuranceServlet")
 public class InsuranceServlet extends HttpServlet
@@ -28,8 +29,16 @@ public class InsuranceServlet extends HttpServlet
             return;
 	    }
 	    
+	  
 	    double insuredAmnt = Double.parseDouble(insuredAmount);
 	    double premiunAmount = calculatePremium(insuredAmnt,installments);
+	    
+	    if (insuredAmnt < 2000) {
+            req.setAttribute("error", "Insured amount must be greater than 2000.");
+            RequestDispatcher rd = req.getRequestDispatcher("insurance.jsp");
+            rd.forward(req, resp);
+            return;
+        }
 	    
 	    InsuranceModel im = new InsuranceModel();
 	    
@@ -37,6 +46,11 @@ public class InsuranceServlet extends HttpServlet
         im.setPolicyname("Generated Insurance Policy");
         im.setCoverageAmount(String.valueOf(insuredAmnt));
         im.setPremiumAmount(String.valueOf(premiunAmount));
+        
+        HttpSession session = req.getSession();
+        session.setAttribute("citizenId", citizenId);
+        
+      
         
         int status = Dao.setInsuranceDetails(im);
 

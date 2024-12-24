@@ -42,7 +42,7 @@
         }
 
         input, select {
-            width: 100%;
+            width: 98%;
             padding: 12px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -56,7 +56,7 @@
         }
 
         button {
-            width: 100%;
+            width: 98%;
             padding: 12px;
             background-color: #007bff;
             color: #fff;
@@ -126,7 +126,7 @@
     <div class="container">
         <h2>Gas Module</h2>
         <form action="GasServlet" method="post">
-             <div class="form-group">
+      <div class="form-group">
       <%
            String citizenId = (String) session.getAttribute("citizenId");
        %>

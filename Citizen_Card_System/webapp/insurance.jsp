@@ -70,11 +70,13 @@
 
         <!-- Form -->
         <form action="InsuranceServlet" method="post">
-            <div class="form-group">
-                <label for="citizenId">Citizen ID:</label>
-                <input type="text" id="citizenId" name="citizenId" placeholder="Enter your Citizen ID"
-                    value="<%= request.getAttribute("citizenId") != null ? request.getAttribute("citizenId") : "" %>" required>
-            </div>
+        <div class="form-group">
+		      <%
+		           String citizenId = (String) session.getAttribute("citizenId");
+		      %>
+	        <label for="citizen-id">Citizen Id:</label>
+	        <input type="text" id="citizen-id" name="citizenId" value="<%= citizenId !=null ? citizenId : "Citizen Id not found" %>">
+       </div>
             <div class="form-group">
                 <label for="insuredAmount">Insured Amount:</label>
                 <input type="number" id="insuredAmount" name="insuredAmount" placeholder="Enter insured amount (must be 2000 or more)"

@@ -127,7 +127,7 @@
       <p><span>Vehicle Registration Number:</span> <%=session.getAttribute("vehicleRegistrationNo") %></p>
       <p><span>Engine Number:</span> <%=session.getAttribute("engineNumber") %></p>
       <p><span>Electricity Number:</span> <%=session.getAttribute("electricityNumber") %></p>
-      <p><span>Edit Number:</span> <%=session.getAttribute("passportNumber") %></p>
+      <p><span>Passport Number:</span> <%=session.getAttribute("passportNumber") %></p>
       <button class="btn btn-primary">Edit Profile</button>
 
       <div class="social-links">
