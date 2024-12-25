@@ -376,7 +376,7 @@
     </div>
 
     <!-- Passport Card -->
-    <div class="logo-card" onclick="window.location='passport.html';" style="cursor: pointer;">
+    <div class="logo-card" onclick="window.location='passport.jsp';" style="cursor: pointer;">
       <img src="image/passport.jpg" alt="Banking Logo" class="logo-img">
       <p class="logo-title">PASSPORT</p>
     </div>

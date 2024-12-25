@@ -17,6 +17,8 @@ import com.model.TransactionModel;
 import com.model.VoteModel;
 
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 
 public class Dao 
@@ -836,5 +838,32 @@ public class Dao
 	    return status;
 	}
 
-
+	  public static void savePassportInfo(String citizenId, String fullName, String passportNumber, String dateIssued, Timestamp validUntil) {
+	        Connection con = getconnect();
+	        
+	        try {
+	            
+	            String query = "INSERT INTO passport_info (citizenId, fullName, passportNumber, dateIssued, validUntil) VALUES (?, ?, ?, ?, ?)";
+	     
+	            PreparedStatement ps = con.prepareStatement(query);
+	   
+	            ps.setString(1, citizenId);       
+	            ps.setString(2, fullName);         
+	            ps.setString(3, passportNumber);  
+	            ps.setString(4, dateIssued);      
+	            ps.setTimestamp(5, validUntil);    
+	
+	            int status = ps.executeUpdate();
+	            
+	            if (status > 0) {
+	                System.out.println("Passport information saved successfully.");
+	            } else {
+	                System.out.println("Failed to save passport information.");
+	            }
+	            
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	
 }
