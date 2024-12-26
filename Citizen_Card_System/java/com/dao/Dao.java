@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
+import com.model.ElectricityModel;
 import com.model.GasModel;
 import com.model.InsuranceModel;
 import com.model.Model;
@@ -778,8 +779,7 @@ public class Dao
 	    return status;
 	}
 
-	public static boolean insertUserCharges(String citizenId, int previousUnits, int currentUnits, double ratePerUnit,
-			double totalCharges) {
+	public static boolean insertUserCharges(ElectricityModel em) {
 		// TODO Auto-generated method stub
 		boolean status = false;
 		Connection con = Dao.getconnect();
@@ -787,11 +787,11 @@ public class Dao
 		try 
 		{
 			PreparedStatement ps = con.prepareStatement("INSERT into electricity_service(citizenId, previousUnits, currentUnits, ratePerUnit, totalCharges) VALUES(?, ?, ?, ?, ?)");
-			ps.setString(1, citizenId);
-			ps.setInt(2, previousUnits);
-			ps.setInt(3, currentUnits);
-			ps.setDouble(4, ratePerUnit);
-			ps.setDouble(5, totalCharges);
+			ps.setString(1, em.getCitizenId());
+			ps.setInt(2, em.getPreviousUnits());
+			ps.setInt(3, em.getCurrentUnits());
+			ps.setDouble(4, em.getRatePerUnit());
+			ps.setDouble(5, em.getTotalCharges());
 			
 			int rowsAffected = ps.executeUpdate();
 			
@@ -814,7 +814,7 @@ public class Dao
 		
 	}
 		
-	public static boolean updateUserCharges(String citizenId, int previousUnits, int currentUnits, double ratePerUnit, double totalCharges) {
+	public static boolean updateUserCharges(String citizenId,  double totalCharges) {
 	    boolean status = false; 
 	    Connection con = Dao.getconnect();
 	    
@@ -861,7 +861,9 @@ public class Dao
 	                System.out.println("Failed to save passport information.");
 	            }
 	            
-	        } catch (SQLException e) {
+	        } 
+	        catch (SQLException e) 
+	        {
 	            e.printStackTrace();
 	        }
 	    }

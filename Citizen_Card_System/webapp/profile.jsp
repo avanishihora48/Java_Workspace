@@ -111,6 +111,7 @@
 </head>
 <body>
 
+<jsp:include page="header.jsp"/>
   <% 
     if (session.getAttribute("fname") != null) { 
   %>
@@ -145,6 +146,6 @@
       out.print("<h3 style='text-align: center; color: #007bff;'>You need to log in first</h3>");
     }
   %>
-
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

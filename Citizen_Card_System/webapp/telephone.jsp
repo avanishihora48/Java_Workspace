@@ -15,12 +15,14 @@
       padding: 20px;
     }
     .container {
-      max-width: 800px;
+     max-width: 650px !important;
       background-color: #ffffff;
-      padding: 20px;
+      padding: 30px;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       margin: auto;
+      margin-top: 40px;
+      margin-bottom: 100px !important;
     }
     h2 {
       text-align: center;
@@ -82,6 +84,7 @@
   </style>
 </head>
 <body>
+<jsp:include page="header.jsp"/>
   <div class="container">
     <h2>Telephone Bill Payment Module</h2>
     <form action="TelephoneServlet" method="post">
@@ -138,7 +141,9 @@
 
       
 	
-       <% if (request.getAttribute("successMessage") != null) { %>
+       <% if (request.getAttribute("successMessage") != null) 
+       { 
+       %>
             <div class="message success">
                 <%= request.getAttribute("successMessage") %>
             </div>
@@ -148,9 +153,13 @@
             <div class="message error">
                 <%= request.getAttribute("errorMessage") %>
             </div>
-        <% } %>
+        <% 
+        } 
+        %>
 
-<% if (request.getAttribute("callCharges") != null) { %>
+<% if (request.getAttribute("callCharges") != null) 
+{ 
+%>
     <div class="bill-summary">
         <h3>Bill Summary</h3>
         <p><strong>Citizen ID:</strong> <%= request.getAttribute("citizenId") %></p>
@@ -159,8 +168,11 @@
         <p><strong>Rate Per Minute:</strong> <%= request.getAttribute("callRate") %></p>
         <p><strong>Total Bill:</strong> <%= request.getAttribute("callCharges") %></p>
     </div>
-<% } %>
+<% 
+} 
+%>
 
   </div>
+<jsp:include page="footer.jsp"/>
 </body> 
 </html>

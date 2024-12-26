@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,12 +14,14 @@
       padding: 20px;
     }
     .container {
-      max-width: 800px;
+      max-width: 650px !important;
       background-color: #ffffff;
-      padding: 20px;
+      padding: 30px;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       margin: auto;
+      margin-top: 40px;
+      margin-bottom: 100px !important;
     }
     h2 {
       text-align: center;
@@ -40,7 +43,7 @@
       margin-top: 5px;
     }
     button {
-      width: 98%;
+      width: 100%;
       padding: 10px;
       background-color: #007bff;
       color: #fff;
@@ -80,6 +83,7 @@
   </style>
 </head>
 <body>
+<jsp:include page="header.jsp"/>
   <div class="container">
     <h2>Electricity Bill Payment Module</h2>
     <form method="post" action="ElectricityServlet">
@@ -93,12 +97,12 @@
 
       <div class="form-group">
         <label for="previous-units">Previous Units:</label>
-        <input type="number" id="previous-units" name="previousUnits" placeholder="Enter Previous Units" required>
+        <input type="number" id="previous-units" name="previousUnits" placeholder="Enter Previous Units" required value="<%= request.getAttribute("previousUnits") != null ? request.getAttribute("previousUnits") : ""  %>">
       </div>
 
       <div class="form-group">
         <label for="current-units">Current Units:</label>
-        <input type="number" id="current-units" name="currentUnits" placeholder="Enter Current Units" required>
+        <input type="number" id="current-units" name="currentUnits" placeholder="Enter Current Units" required value="<%= request.getAttribute("currentUnits") != null ? request.getAttribute("currentUnits") : ""  %>">
       </div>
 
      <%
@@ -112,20 +116,13 @@
 
       <button type="submit" name="calculate">Calculate Bill</button><br><br>
       
- 
       <div class="form-group">
         <label for="call-charges">Calculated Charges:</label>
-        <input type="number" id="call-charges" name="totalCharges" value="<%= request.getAttribute("totalCharges") != null ? request.getAttribute("totalCharges") : "" %>" readonly>
+        <input type="number" id="call-charges" name="totalCharges" readonly 
+        value="<%= request.getAttribute("totalCharges") != null ? request.getAttribute("totalCharges") : "" %>">
       </div>
 
-      <% if(request.getAttribute("totalCharges") != null) 
-    { 
-      %>
-        <button type="submit" name="pay">Pay Bill</button>
-      <% 
-    } 
-      %>
-
+        <button type="submit" name="pay" >Pay Bill</button>
     </form>
 
     <% if (request.getAttribute("successMessage") != null) 
@@ -157,5 +154,6 @@
       <p><strong>Total Bill:</strong> <%= request.getAttribute("totalCharges") %></p>
     </div>
   </div>
+ <jsp:include page="footer.jsp"/>
 </body>
 </html>

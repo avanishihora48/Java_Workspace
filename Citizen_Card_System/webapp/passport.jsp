@@ -12,12 +12,14 @@
       padding: 20px;
     }
     .container {
-      max-width: 800px;
+      max-width: 650px !important;
       background-color: #ffffff;
-      padding: 20px;
+      padding: 30px;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       margin: auto;
+      margin-top: 40px;
+      margin-bottom: 100px !important;
     }
     h2 {
       text-align: center;
@@ -39,7 +41,7 @@
       margin-top: 5px;
     }
     button {
-      width: 98%;
+      width: 100%;
       padding: 10px;
       background-color: #007bff;
       color: #fff;
@@ -68,6 +70,7 @@
   </style>
 </head>
 <body>
+<jsp:include page="header.jsp"/>
   <div class="container">
     <h2>Passport Information Module</h2>
     <form method="post" action="PassportServlet">
@@ -116,5 +119,6 @@
       <p><strong>Valid Until:</strong> <%= session.getAttribute("validDate") != null ? session.getAttribute("validDate") : "Not available" %></p>
     </div>
   </div>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

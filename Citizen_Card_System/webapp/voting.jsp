@@ -13,12 +13,14 @@
       padding: 20px;
     }
     .container {
-      max-width: 600px;
+      max-width: 650px !important;
       background-color: #ffffff;
-      padding: 20px;
+      padding: 30px;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       margin: auto;
+      margin-top: 40px;
+      margin-bottom: 100px !important;
     }
     h2 {
       text-align: center;
@@ -44,15 +46,14 @@
       margin-right: 10px;
     }
     button {
-      width: 100%;
-      padding: 12px;
-      background-color: #28a745;
+     width: 100%;
+      padding: 10px;
+      background-color: #007bff;
       color: #fff;
       border: none;
       border-radius: 5px;
       cursor: pointer;
       font-size: 16px;
-      margin-top: 20px;
     }
     button:hover {
       background-color: #218838;
@@ -93,8 +94,9 @@
   </style>
 </head>
 <body>
+<jsp:include page="header.jsp"/>
   <div class="container">
-    <h2>Voting Module</h2>
+    <h2>Voting Module</h2><br>
     <form action="VoteServlet" method="post">
       <div class="form-section">
          <div class="form-group">
@@ -106,7 +108,7 @@
       </div>
 
         <div class="form-group">
-          <label for="area">Select Voting Area:</label>
+          <label for="area">Select Voting Area:</label><br>
           <select id="area" name="area">
             <option value="Rajkot">Rajkot</option>
             <option value="Ahemdabad">Ahemdabad</option>
@@ -165,5 +167,6 @@
 	      } 
 	    %>
   </div>
+ <jsp:include page="footer.jsp"/>
 </body>
 </html>

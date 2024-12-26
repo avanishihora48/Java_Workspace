@@ -6,77 +6,135 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Taxation Module</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f7fa;
-      padding: 20px;
-    }
+ body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+  }
 
-    .container {
-      max-width: 500px;
-      margin: 0 auto;
-      background: white;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+.container {
+    max-width: 500px !important;  /* Reduced width */
+    background: #fff;
+    padding: 15px;     /* Reduced padding */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    margin-top: 20px;  /* Adjust top margin to avoid header overlap */
+    margin-bottom: 100px !important;
+}
 
-    .form-group {
-      margin-bottom: 20px;
-    }
+h2 {
+    text-align: center;
+    font-size: 18px;   /* Reduce font size for h2 */
+}
 
-    label {
-      font-weight: bold;
-      margin-bottom: 8px;
-      display: block;
-    }
+.form-group {
+    margin-bottom: 12px;  /* Reduced margin */
+}
 
-    input {
-      width: 90%;
-      padding: 12px;
-      font-size: 14px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      margin-bottom: 10px;
-      background-color: #f9f9f9;
-    }
+label {
+    display: block;
+    font-weight: bold;
+    font-size: 14px;   /* Reduced font size for label */
+}
 
-    button {
-      width: 95%;
-      padding: 12px;
-      background-color: #4299e1;
-      color: white;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+input, select, button {
+    width: 100%;
+    padding: 8px;      /* Reduced padding */
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;    /* Reduced font size for inputs */
+}
 
-    button:hover {
-      background-color: #3182ce;
-    }
+ button {
+    width: 100%;
+     padding: 12px;
+     background-color: #007bff;
+     color: #fff;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 18px;
+     margin-top: 10px;
+}
 
-    .message {
+button:hover {
+    background-color: #218838;
+}
+
+.message {
+    font-weight: bold;
+    margin-top: 15px;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;   /* Reduced font size */
+}
+
+.message.success {
+    color: green;
+}
+
+.message.error {
+    color: red;
+}
+
+.transaction-summary {
+    margin-top: 15px;
+    background: #f9f9f9;
+    padding: 12px;     /* Reduced padding */
+    border-radius: 5px;
+    font-size: 14px;    /* Reduced font size */
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+header, footer {
+    width: 100%;
+    background-color: #fff;
+}
+
+.message {
       padding: 10px;
       margin-top: 20px;
       border-radius: 5px;
       font-weight: bold;
-    }
+}
 
-     .message {
+.message {
       text-align: center;
       margin-top: 10px;
       font-weight: bold;
-    }
-    .message.success {
+}
+
+.message.success {
       color: green;
-    }
-    .message.error {
+}
+
+.message.error {
       color: red;
-    }
+}
+    
+body, html {
+	  margin: 0;
+	  padding: 0;
+}
+
+header, footer {
+  width: 100%;
+  background-color: #fff; 
+}
+
+ 
   </style>
 </head>
 <body>
+<jsp:include page="header.jsp"/>
+<br>
   <div class="container">
     <h2>Taxation Module</h2>
     <form id="tax-form" action="TaxServlet" method="post">
@@ -120,8 +178,10 @@
     <p><strong>Amount Paid:</strong> <%= request.getAttribute("taxPaid") %></p>
     <p><strong>Amount Due:</strong> <%= request.getAttribute("taxDue") %></p>
   </div>
+  
 <% } %>
 
   </div>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

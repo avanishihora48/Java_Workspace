@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,12 +14,13 @@
             padding: 20px;
         }
         .container {
-            max-width: 600px;
+             max-width: 500px !important;
             background: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             margin: auto;
+            margin-bottom: 100px !important;
         }
         h2 {
             text-align: center;
@@ -38,10 +40,15 @@
             border-radius: 5px;
         }
         button {
-            background-color: #28a745;
+            width:100%;
+            padding: 12px;
+            background-color: #007bff;
             color: #fff;
             border: none;
+            border-radius: 5px;
             cursor: pointer;
+            font-size: 18px;
+            margin-top: 10px;
         }
         button:hover {
             background-color: #218838;
@@ -65,7 +72,10 @@
     </style>
 </head>
 <body>
+<jsp:include page="header.jsp"/>
+<br><br>
     <div class="container">
+    
         <h2>Insurance Policy Form</h2>
 
         <!-- Form -->
@@ -112,5 +122,7 @@
             }
         %>
     </div>
+    
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

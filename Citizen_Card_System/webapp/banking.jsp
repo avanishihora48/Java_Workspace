@@ -13,12 +13,14 @@
       padding: 20px;
     }
     .container {
-      max-width: 800px;
+      max-width: 650px !important;
       background-color: #ffffff;
-      padding: 20px;
+      padding: 30px;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       margin: auto;
+      margin-top: 40px;
+      margin-bottom: 100px !important;
     }
     h2 {
       text-align: center;
@@ -33,14 +35,14 @@
       margin-bottom: 5px;
     }
     input, select {
-      width: 95%;
+      width: 100%;
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 5px;
       margin-top: 5px;
     }
     button {
-      width: 95%;
+     width: 100%;
       padding: 10px;
       background-color: #007bff;
       color: #fff;
@@ -92,6 +94,7 @@
 </script>
 </head>
 <body>
+<jsp:include page="header.jsp"/>
   <div class="container">
     <h2>Banking Module</h2>
    
@@ -121,7 +124,7 @@
       <button type="submit" name="transactionType" value="deposit">Deposit</button><br><br>
       <button type="submit" name="transactionType" value="withdrawal">Withdraw</button>
     </form>
-
+    <br><br>
     <h2>Transfer Funds</h2>
     <form action="BankTransactionServlet" method="POST" accept-charset="UTF-8">
       <div class="form-group">
@@ -198,5 +201,6 @@
     } 
     %>
   </div>
+ <jsp:include page="footer.jsp"/>
 </body>
 </html>

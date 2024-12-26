@@ -13,12 +13,14 @@
       padding: 20px;
     }
     .container {
-      max-width: 700px;
-      background-color: #ffffff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      margin: auto;
+     max-width: 500px !important;
+     background-color: #ffffff;
+     padding: 30px;
+     border-radius: 8px;
+     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+     margin: auto;
+     margin-top: 40px;
+     margin-bottom: 100px !important;
     }
     h2 {
       text-align: center;
@@ -39,7 +41,7 @@
       border-radius: 5px;
     }
     button {
-      width: 93%;
+      width: 100%;
       padding: 10px;
       background-color: #007bff;
       color: #fff;
@@ -79,6 +81,7 @@
   </style>
 </head>
 <body>
+<jsp:include page="header.jsp"/>
   <div class="container">
     <h2>RTO Module</h2>
     <form action="RtoServlet" method="post">
@@ -137,5 +140,6 @@
         <% } %>
     </div>
   </div>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>
