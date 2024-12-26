@@ -18,7 +18,7 @@
       border-radius: 8px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       margin: auto;
-      margin-top: 40px;
+       margin-top: 60px;
       margin-bottom: 100px !important;
     }
     h2 {
@@ -71,7 +71,8 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-  <div class="container">
+
+  <div class="container"><button class="back-arrow" onclick="history.back()" style="width: 50px">←</button>
     <h2>Passport Information Module</h2>
     <form method="post" action="PassportServlet">
        <%
@@ -118,6 +119,7 @@
       <p><strong>Date Issued:</strong> <%= session.getAttribute("dateIssued") != null ? session.getAttribute("dateIssued") : "Not available" %></p>
       <p><strong>Valid Until:</strong> <%= session.getAttribute("validDate") != null ? session.getAttribute("validDate") : "Not available" %></p>
     </div>
+    
   </div>
 <jsp:include page="footer.jsp"/>
 </body>

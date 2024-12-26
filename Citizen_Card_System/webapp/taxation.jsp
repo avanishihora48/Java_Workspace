@@ -61,7 +61,7 @@ input, select, button {
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #0056b3;
 }
 
 .message {
@@ -135,7 +135,7 @@ header, footer {
 <body>
 <jsp:include page="header.jsp"/>
 <br>
-  <div class="container">
+  <div class="container"><button class="back-arrow" onclick="history.back()" style="width: 50px">←</button>
     <h2>Taxation Module</h2>
     <form id="tax-form" action="TaxServlet" method="post">
        <div class="form-group">

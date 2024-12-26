@@ -84,7 +84,7 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-  <div class="container">
+  <div class="container"><button class="back-arrow" onclick="history.back()" style="width: 50px">←</button>
     <h2>Electricity Bill Payment Module</h2>
     <form method="post" action="ElectricityServlet">
      <div class="form-group">

@@ -82,7 +82,7 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-  <div class="container">
+  <div class="container"><button class="back-arrow" onclick="history.back()" style="width: 50px">←</button>
     <h2>RTO Module</h2>
     <form action="RtoServlet" method="post">
       <div class="form-group">

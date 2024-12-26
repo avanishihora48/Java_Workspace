@@ -71,7 +71,7 @@
 </script>
 </head>
 <body>
- <div class="container">
+ <div class="container"><button class="back-arrow" onclick="history.back()" style="width: 50px">←</button>
     <h2>Bank Transfer</h2>
     <form action="BankTransactionServlet" method="POST">
     

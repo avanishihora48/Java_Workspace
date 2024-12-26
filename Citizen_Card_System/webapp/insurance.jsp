@@ -51,7 +51,7 @@
             margin-top: 10px;
         }
         button:hover {
-            background-color: #218838;
+            background-color: #0056b3;
         }
         .message {
             font-weight: bold;
@@ -74,7 +74,7 @@
 <body>
 <jsp:include page="header.jsp"/>
 <br><br>
-    <div class="container">
+    <div class="container"><button class="back-arrow" onclick="history.back()" style="width: 50px">←</button>
     
         <h2>Insurance Policy Form</h2>
 

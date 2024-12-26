@@ -126,7 +126,7 @@
 <body>
 
 <jsp:include page="header.jsp"/>
-    <div class="container">
+    <div class="container"><button class="back-arrow" onclick="history.back()" style="width: 50px">←</button>
         <h2>Gas Module</h2>
         <form action="GasServlet" method="post">
       <div class="form-group">

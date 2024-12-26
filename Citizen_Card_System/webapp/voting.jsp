@@ -56,7 +56,7 @@
       font-size: 16px;
     }
     button:hover {
-      background-color: #218838;
+      background-color: #0056b3;
     }
     .voting-summary {
       margin-top: 20px;
@@ -95,7 +95,7 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-  <div class="container">
+  <div class="container"><button class="back-arrow" onclick="history.back()" style="width: 50px">←</button>
     <h2>Voting Module</h2><br>
     <form action="VoteServlet" method="post">
       <div class="form-section">
