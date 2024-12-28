@@ -51,7 +51,7 @@
             for (WishlistModel m : list) {
         %>
             <div class="product">
-                <img src="data:image/jpeg;base64,<%= m.getP_image() != null ? m.getP_image() : "defaultBase64ImageString" %>" width="150px" height="200px" />
+                 <img src="data:image/jpeg;base64,<%=m.getP_image()%>" width="150px" height="200px" />
                 <h3><%= m.getP_name() %></h3>
                 <p>Price: <%= m.getP_price() %></p>
                 

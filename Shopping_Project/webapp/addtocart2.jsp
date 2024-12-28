@@ -1,11 +1,12 @@
 <%@page import="com.model.WishlistModel"%>
 <%@page import="com.dao.Dao"%>
+<%@page import="com.model.ProductModel"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
@@ -17,20 +18,21 @@
 			int id2 = Integer.parseInt(id);
 			
 			WishlistModel m = Dao.getitemindexwise(id2);
-				
+			
+			
+			
 	%>
 		
-			<br>
-			<br>
-			<center>
-			<h2><%=m.getP_name() %></h2>
-			<h3><%=m.getP_price() %></h3>
-			<h3><%=m.getP_des() %></h3>
-			<img src="data:image/jpeg;base64,<%=m.getP_image()%>" width="350px" height="300px" />
-	
-	
-	<form action="CartSave2" method="post" enctype="multipart/form-data" class="requires-validation" novalidate>
+		<h3><%=m.getP_name() %></h3>
+		<h3><%=m.getP_price() %></h3>
+		<h3><%=m.getP_des() %></h3>
+		<img src="data:image/jpeg;base64,<%=m.getP_image()%>" width="350px" height="300px" />
+			
+		<form action="CartSave2" method="post" enctype="multipart/form-data" class="requires-validation" novalidate>
 
+
+							
+                            
                              <div class="col-md-12">
                                <input class="form-control" type="hidden" name="id" placeholder="Product Name" value="<%=m.getId() %>" required>
                             </div>
@@ -42,10 +44,11 @@
                             <div class="col-md-12">
                                <input class="form-control" type="hidden" name="p_price" placeholder="Product Price" value="<%=m.getP_price() %>" required>
                             </div>
-                           
+                            
                             <div class="col-md-12">
-                               <input class="form-control" type="hidden" name="p_des" placeholder="Product description value="<%=m.getP_des() %>" required>
+                               <input class="form-control" type="hidden" name="p_des" placeholder="Product Description" value="<%=m.getP_des() %>" readonly="readonly">
                             </div>
+                            
                         
                             
                              <div class="col-md-12">
