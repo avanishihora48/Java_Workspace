@@ -164,7 +164,7 @@
                 <label for="gasAmount">Gas Amount:</label>
                 <input type="text" id="gasAmount" name="gasAmount" required value="<%= 1000 + (int)(Math.random() * 9000) %>">
             </div>
-            <button type="submit">Check Delivery Status</button>
+            <button type="submit">Pay Amount</button>
         </form>
 
         <% if (request.getAttribute("successMessage") != null) { %>

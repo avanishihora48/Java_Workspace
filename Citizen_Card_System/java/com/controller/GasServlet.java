@@ -78,6 +78,7 @@ public class GasServlet extends HttpServlet {
             boolean balanceUpdated = Dao.updateGasUserAccountBalance(gs);
 
             if (gasInserted && balanceUpdated) {
+            	req.setAttribute("successMessage", "Gas payment completed successfully!");
                 req.setAttribute("citizenId", citizenId);
                 req.setAttribute("gasType", gasType);
                 req.setAttribute("gasNumber", gasNumber);

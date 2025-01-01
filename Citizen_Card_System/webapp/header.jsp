@@ -191,8 +191,8 @@
    { 
     %>
       <a href="aboutus.html">About Us</a>
-      <a href="contactus.html">Contact Us</a>
-      <a href="ratings.html">Rate Us</a>
+      <a href="contactus.jsp">Contact Us</a>
+      <a href="ratings.jsp">Rate Us</a>
       <a href="profile.jsp" class="nav-link" aria-label="Profile"><i class="bi bi-person-circle fs-3"></i></a>
       <a href="logout.jsp" class="logout">Logout</a>
     <% 

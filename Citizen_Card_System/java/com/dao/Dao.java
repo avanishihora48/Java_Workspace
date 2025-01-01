@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
+import com.model.ContactModel;
+import com.model.CreditRatingModel;
 import com.model.ElectricityModel;
 import com.model.GasModel;
 import com.model.InsuranceModel;
@@ -353,15 +355,7 @@ public class Dao
 	    {
 	        e.printStackTrace();
 	    } 
-	    finally 
-	    {
-	        try {
-	            if (rs != null) rs.close();
-	            if (ps != null) ps.close();
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }
-	    }
+	   
 
 	    return balance;
 	}
@@ -411,21 +405,9 @@ public class Dao
 	    } 
 	    catch (SQLException e) 
 	    {
-	        try {
-	            con.rollback();  
-	        } catch (SQLException ex) {
-	            ex.printStackTrace();
-	        }
 	        e.printStackTrace();
 	    } 
-	    finally 
-	    {
-	        try {
-	            con.setAutoCommit(true); 
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }
-	    }
+	   
 
 	    return status;
 	}
@@ -500,25 +482,9 @@ public class Dao
 	    } 
 	    catch (SQLException e) 
 	    {
-	        try {
-	            if (con != null) con.rollback();
-	        } catch (SQLException ex) {
-	            ex.printStackTrace();
-	        }
 	        e.printStackTrace();
 	    } 
-	    finally 
-	    {
-	        try 
-	        {
-	            if (psDebit != null) psDebit.close();
-	            if (psCredit != null) psCredit.close();
-	            if (psCheckRecipient != null) psCheckRecipient.close();
-	            if (con != null) con.setAutoCommit(true);
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }
-	    }
+	    
 	    return false;
 	}
 
@@ -543,17 +509,6 @@ public class Dao
 	    {
 	        e.printStackTrace();
 	    } 
-	    finally 
-	    {
-	       
-	        try {
-	            if (con != null) {
-	                con.close();
-	            }
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }
-	    }
 	    
 	    return status;
 	}
@@ -618,16 +573,11 @@ public class Dao
 	        if (rowsUpdated > 0) {
 	            status = true;
 	        }
-	    } catch (SQLException e) {
+	    } 
+	    catch (SQLException e) 
+	    {
 	        e.printStackTrace();
-	    } finally {
-	        try {
-	            if (stmt != null) stmt.close();
-	            if (con != null) con.close();
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }
-	    }
+	    } 
 	    return status;
 	}
 
@@ -674,16 +624,11 @@ public class Dao
 		        if (rowsUpdated > 0) {
 		            status = true;
 		        }
-		    } catch (SQLException e) {
+		    } 
+		    catch (SQLException e) 
+		    {
 		        e.printStackTrace();
-		    } finally {
-		        try {
-		            if (ps != null) ps.close();
-		            if (con != null) con.close();
-		        } catch (SQLException e) {
-		            e.printStackTrace();
-		        }
-		    }
+		    } 
 		    return status;
 	}
 
@@ -753,7 +698,9 @@ public class Dao
 	        if (rowsAffected > 0) {
 	            status = true;
 	        }
-	    } catch (SQLException e) {
+	    } 
+	    catch (SQLException e) 
+	    {
 	        e.printStackTrace();
 	    }
 	    return status;
@@ -773,7 +720,9 @@ public class Dao
 	        if (rowsUpdated > 0) {
 	            status = true; 
 	        }
-	    } catch (SQLException e) {
+	    } 
+	    catch (SQLException e) 
+	    {
 	        e.printStackTrace();
 	    }
 	    return status;
@@ -868,4 +817,54 @@ public class Dao
 	        }
 	    }
 	
+	  public static int contactinsertdata(ContactModel cm)
+		{
+			int status = 0;
+			
+			Connection con = Dao.getconnect();
+			
+			
+			try 
+			{
+				PreparedStatement ps = con.prepareStatement("insert into contact(email,subject,message) values (?,?,?)");
+				ps.setString(1,cm.getEmail());
+				ps.setString(2,cm.getSubject());
+				ps.setString(3,cm.getMessage());
+				
+				status = ps.executeUpdate();
+			} 
+			catch (SQLException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return status;
+		}
+
+	public static boolean saveCreditRating(CreditRatingModel cr) {
+		// TODO Auto-generated method stub
+		boolean status = false;
+		Connection con = Dao.getconnect();
+		try 
+		{
+			PreparedStatement ps = con.prepareStatement("INSERT into credit_ratings(name, behavior,	rating) VALUES (?,?,?)");
+			ps.setString(1,cr.getName());
+			ps.setString(2,cr.getBehavior());
+			ps.setString(3, cr.getRating());
+			
+			int rowsUpdated = ps.executeUpdate();
+			 
+	        if (rowsUpdated > 0) {
+	            status = true; 
+	        }
+		} 
+		catch (SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return status;
+	}
 }
