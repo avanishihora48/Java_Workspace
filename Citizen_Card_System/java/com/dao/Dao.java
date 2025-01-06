@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
+import com.model.AdminModel;
 import com.model.ContactModel;
 import com.model.CreditRatingModel;
 import com.model.ElectricityModel;
@@ -866,5 +867,239 @@ public class Dao
 		}
 		
 		return status;
+	}
+	
+	public static AdminModel adminlogin(AdminModel m) 
+	 { 
+		 AdminModel m2=null;
+	  
+		 Connection con = Dao.getconnect(); 
+		 try 
+		 {
+			 PreparedStatement ps = con.prepareStatement("select * from adminlogin where username=? and password=?");
+			 ps.setString(1,m.getUsername()); 
+			 ps.setString(2,m.getPassword());
+	  
+			 ResultSet set = ps.executeQuery();
+	  
+			 while(set.next()) 
+			 {
+				 int id = set.getInt(1); 
+				 String username =set.getString(2); 
+				 String password = set.getString(3);
+	  
+				 m2 = new AdminModel();
+	  
+				 m2.setId(id);
+				 m2.setUsername(username); 
+				 m2.setPassword(password);
+	  
+			 }
+			 }
+		 catch (Exception e)
+		 { // TODO Auto-generated catch block
+			 	e.printStackTrace(); 
+		}
+	  
+	  return m2;
+	  
+	  }
+	
+	public static ResultSet fetchInsuranceDetails() throws SQLException {
+	    Connection con = Dao.getconnect();
+	    PreparedStatement stmt = null;
+	    ResultSet rs = null;
+
+	    try 
+	    {
+	        con = Dao.getconnect();  
+	        String query = "SELECT * FROM insurance";  
+	        stmt = con.prepareStatement(query);
+	        rs = stmt.executeQuery();
+
+	    } 
+	    catch (SQLException e) 
+	    {
+	        System.out.println("Error fetching insurance details: " + e.getMessage());
+	        throw e;  
+	    }
+	
+	    return rs;
+	}
+
+	public static ResultSet fetchTaxationDetails() throws SQLException {
+	    Connection con = Dao.getconnect();
+	    PreparedStatement stmt = null;
+	    ResultSet rs = null;
+
+	    try 
+	    {
+	        con = Dao.getconnect();  
+	        String query = "SELECT * FROM tax_table";  
+	        stmt = con.prepareStatement(query);
+	        rs = stmt.executeQuery();
+
+	    } 
+	    catch (SQLException e) 
+	    {
+	        System.out.println("Error tax details: " + e.getMessage());
+	        throw e;  
+	    }
+	
+	    return rs;
+	}
+
+	public static ResultSet fetchGasDetails() throws SQLException {
+	    Connection con = Dao.getconnect();
+	    PreparedStatement stmt = null;
+	    ResultSet rs = null;
+
+	    try 
+	    {
+	        con = Dao.getconnect();  
+	        String query = "SELECT * FROM gas_service";  
+	        stmt = con.prepareStatement(query);
+	        rs = stmt.executeQuery();
+
+	    } 
+	    catch (SQLException e) 
+	    {
+	        System.out.println("Error fetching insurance details: " + e.getMessage());
+	        throw e;  
+	    }
+	
+	    return rs;
+	}
+
+	public static ResultSet fetchRtoDetails() throws SQLException {
+	    Connection con = Dao.getconnect();
+	    PreparedStatement stmt = null;
+	    ResultSet rs = null;
+
+	    try 
+	    {
+	        con = Dao.getconnect();  
+	        String query = "SELECT * FROM rto_service";  
+	        stmt = con.prepareStatement(query);
+	        rs = stmt.executeQuery();
+
+	    } 
+	    catch (SQLException e) 
+	    {
+	        System.out.println("Error fetching insurance details: " + e.getMessage());
+	        throw e;  
+	    }
+	
+	    return rs;
+	}
+	
+	public static ResultSet fetchVoteDetails() throws SQLException {
+	    Connection con = Dao.getconnect();
+	    PreparedStatement stmt = null;
+	    ResultSet rs = null;
+
+	    try 
+	    {
+	        con = Dao.getconnect();  
+	        String query = "SELECT * FROM votes";  
+	        stmt = con.prepareStatement(query);
+	        rs = stmt.executeQuery();
+
+	    } 
+	    catch (SQLException e) 
+	    {
+	        System.out.println("Error fetching insurance details: " + e.getMessage());
+	        throw e;  
+	    }
+	
+	    return rs;
+	}
+	
+	public static ResultSet fetchBankDetails() throws SQLException {
+	    Connection con = Dao.getconnect();
+	    PreparedStatement stmt = null;
+	    ResultSet rs = null;
+
+	    try 
+	    {
+	        con = Dao.getconnect();  
+	        String query = "SELECT * FROM transactions";  
+	        stmt = con.prepareStatement(query);
+	        rs = stmt.executeQuery();
+
+	    } 
+	    catch (SQLException e) 
+	    {
+	        System.out.println("Error fetching insurance details: " + e.getMessage());
+	        throw e;  
+	    }
+	
+	    return rs;
+	}
+	
+	public static ResultSet fetchCallDetails() throws SQLException {
+	    Connection con = Dao.getconnect();
+	    PreparedStatement stmt = null;
+	    ResultSet rs = null;
+
+	    try 
+	    {
+	        con = Dao.getconnect();  
+	        String query = "SELECT * FROM tel_service";  
+	        stmt = con.prepareStatement(query);
+	        rs = stmt.executeQuery();
+
+	    } 
+	    catch (SQLException e) 
+	    {
+	        System.out.println("Error fetching insurance details: " + e.getMessage());
+	        throw e;  
+	    }
+	
+	    return rs;
+	}
+	
+	public static ResultSet fetchElecDetails() throws SQLException {
+	    Connection con = Dao.getconnect();
+	    PreparedStatement stmt = null;
+	    ResultSet rs = null;
+
+	    try 
+	    {
+	        con = Dao.getconnect();  
+	        String query = "SELECT * FROM electricity_service";  
+	        stmt = con.prepareStatement(query);
+	        rs = stmt.executeQuery();
+
+	    } 
+	    catch (SQLException e) 
+	    {
+	        System.out.println("Error fetching insurance details: " + e.getMessage());
+	        throw e;  
+	    }
+	
+	    return rs;
+	}
+	
+	public static ResultSet fetchPassDetails() throws SQLException {
+	    Connection con = Dao.getconnect();
+	    PreparedStatement stmt = null;
+	    ResultSet rs = null;
+
+	    try 
+	    {
+	        con = Dao.getconnect();  
+	        String query = "SELECT * FROM passport_info";  
+	        stmt = con.prepareStatement(query);
+	        rs = stmt.executeQuery();
+
+	    } 
+	    catch (SQLException e) 
+	    {
+	        System.out.println("Error fetching insurance details: " + e.getMessage());
+	        throw e;  
+	    }
+	
+	    return rs;
 	}
 }
