@@ -19,9 +19,25 @@
         header {
             background-color: #333;
             color: white;
-            padding: 15px 0;
-            text-align: center;
-            font-size: 24px;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logout-btn {
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            border: 2px solid white;
+            transition: background-color 0.3s ease;
+        }
+        .logout-btn:hover {
+            background-color: white;
+            color: black;
         }
         .dashboard {
             display: grid;
@@ -47,34 +63,6 @@
             font-size: 40px;
             margin-bottom: 10px;
         }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-top: 5px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
         @media (max-width: 768px) {
             .dashboard {
                 grid-template-columns: 1fr;
@@ -85,6 +73,7 @@
 <body>
     <header>
         Administrator Dashboard
+        <button class="logout-btn" onclick="window.location.href='adminlogout.jsp';">Logout</button>
     </header>
     <div class="container">
         <div class="dashboard">

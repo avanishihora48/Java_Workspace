@@ -5,7 +5,6 @@ public class Model
    int id;
    String fname,lname,gender,email,phone,city,password,repassword,citizenId,gasNumber,vehicleRegistrationNo,engineNumber,electricityNumber,passportNumber;
    
-
 	public int getId() {
 		return id;
 	}
